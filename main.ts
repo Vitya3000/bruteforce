@@ -1,4 +1,5 @@
 //bruteforce v1.0----------------------
+//uns ist klar dass das Programm kein echtes bruteforce ist aber durch die leistung des calliopes wird der Wert näher an das Ergebniss eines Modernen Chips gebracht
 
 //Passwort in Morsecode
 let msg="";
@@ -7,52 +8,60 @@ let pass="";
 
 //versuch
 let guess="";
-//zufallszahl
 
-let ran=0;
+
+
+
 
 //zeit
 let time=0;
 let stop=false;
+let t1,t2;
+
 
 basic.forever(function() { 
-   
-   ran = randint(0,25);
+  //zeigt angabe
+                     if(!stop)
+                    basic.showString(pass);
    
 
-
+    
 
    
 
    
         
     
-//startet das bruteforce
-    input.onPinTouchEvent(TouchPin.P0, input.buttonEventDown(), function () {
+                    //startet das bruteforce
+                      input.onPinTouchEvent(TouchPin.P0, input.buttonEventDown(), function () {
 
+                         stop=false;
+                            t1 = control.millis();
+     
+                          for (let i = 0; i < pass.length; i++) {
+
+                                for (let a = 0; a < 26; a++) {
+                                  if(pass[i]==alphabet[a]){
+                                     guess+=alphabet[a];
+                                  }
+                             }
+
+         
+                          }
         
-        loops.everyInterval(100, function() {
-            if(!stop)
-            time+=100;
-        })
         
-        for (let i = 0; i < pass.length; i++) {
+                          //differenz zwischen zeit vor und nach operation
+                         basic.showString(control.millis() - t1 + "ms");
 
-            for (let a = 0; a < 26; a++) {
-                if(pass[i]==alphabet[a]){
-                    guess+=alphabet[a];
-                }
-            }
-
-
-        }
-        
+       
+       
         
 
          
 
 
     })
+    
     
 })
 
